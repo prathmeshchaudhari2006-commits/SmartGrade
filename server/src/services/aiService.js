@@ -2,7 +2,7 @@ import fetch from 'node-fetch'; // Need to install if not present, but Node 18+ 
 // However, since we are in Node environment, ensuring we have access or using library.
 
 export const gradeWithGemini = async ({ subject, question, studentAnswer, base64Image, mimeType }) => {
-  const API_KEY = process.env.AI_API_KEY || 'AIzaSyBwM_RzTKPhJm_lyqlZdLBzdRZBoPmjrA4';
+  const API_KEY = process.env.AI_API_KEY || 'AIzaSyBNmnhxNaQS47MSV6n7ope7B1J5_Pgo5A8';
   // Use Gemini 1.5 Flash for reliable Vision + JSON support
   const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
