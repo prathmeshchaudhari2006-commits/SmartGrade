@@ -14,10 +14,10 @@ async function startServer() {
         // Auto-seed required test data
         try {
             const defaultClass = await prisma.class.upsert({
-                where: { id: 'test-class-id' },
+                where: { id: '165e1714-7800-45f4-a7b6-1e93f8db9ba6' },
                 update: {},
                 create: {
-                    id: 'test-class-id',
+                    id: '165e1714-7800-45f4-a7b6-1e93f8db9ba6',
                     name: 'Class 10A',
                     subject: 'Multiple'
                 }
@@ -27,14 +27,14 @@ async function startServer() {
                 where: { email: 'Faculty@nmims.in' },
                 update: {},
                 create: {
-                    id: 'test-teacher-id',
+                    id: 'teacher-123',
                     email: 'Faculty@nmims.in',
                     password: 'hashedpassword',
                     name: 'Demo Faculty',
                     role: 'TEACHER'
                 }
             });
-            console.log('🌱 Verified default Class and Teacher exist.');
+            console.log('🌱 Verified default Class and Teacher exist with exact frontend IDs.');
         } catch (seedErr) {
             console.error('⚠️ Could not auto-seed default data:', seedErr.message);
         }
