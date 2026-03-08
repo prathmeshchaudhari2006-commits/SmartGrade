@@ -13,22 +13,17 @@ const { Pool } = pgPkg;
 
 console.log('🔧 DATABASE_URL:', process.env.DATABASE_URL ? 'SET' : 'NOT SET');
 
+// Use DATABASE_URL from environment (works for both local and production)
 const pool = new Pool({
-    connectionString: 'postgresql://postgres:admin123@localhost:5432/smartgrade',
+    connectionString: process.env.DATABASE_URL,
     connectionTimeoutMillis: 10000,
     idleTimeoutMillis: 30000,
     max: 5,
+    ssl: process.env.DATABASE_URL?.includes('neon.tech') ? { rejectUnauthorized: false } : false,
 });
 
 pool.on('error', (err) => {
     console.error('💀 Pool error:', err.message);
-});
-
-console.log('🔧 Pool created, testing raw query...');
-pool.query('SELECT 1').then(() => {
-    console.log('🔧 Raw pool query succeeded');
-}).catch(e => {
-    console.error('🔧 Raw pool query FAILED:', e.message);
 });
 
 const adapter = new PrismaPg(pool);
