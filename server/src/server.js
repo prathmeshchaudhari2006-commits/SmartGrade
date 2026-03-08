@@ -34,7 +34,34 @@ async function startServer() {
                     role: 'TEACHER'
                 }
             });
-            console.log('🌱 Verified default Class and Teacher exist with exact frontend IDs.');
+
+            // Seed Student Account (SAP ID acting as email for login logic)
+            const defaultStudent = await prisma.user.upsert({
+                where: { email: '80012345678' },
+                update: {},
+                create: {
+                    id: 'student-123',
+                    email: '80012345678', // Using SAP ID as email field for auth
+                    password: 'hashedpassword',
+                    name: 'Demo Student',
+                    role: 'STUDENT'
+                }
+            });
+
+            // Seed Parent Account
+            const defaultParent = await prisma.user.upsert({
+                where: { email: 'parent@demo.com' },
+                update: {},
+                create: {
+                    id: 'parent-123',
+                    email: 'parent@demo.com',
+                    password: 'hashedpassword',
+                    name: 'Demo Parent',
+                    role: 'PARENT'
+                }
+            });
+
+            console.log('🌱 Verified default Class, Faculty, Student, and Parent exist with exact frontend IDs.');
         } catch (seedErr) {
             console.error('⚠️ Could not auto-seed default data:', seedErr.message);
         }
