@@ -11,6 +11,34 @@ async function startServer() {
         await prisma.$connect();
         console.log('✅ Synchronized with PostgreSQL Database via Prisma');
 
+        // Auto-seed required test data
+        try {
+            const defaultClass = await prisma.class.upsert({
+                where: { id: 'test-class-id' },
+                update: {},
+                create: {
+                    id: 'test-class-id',
+                    name: 'Class 10A',
+                    subject: 'Multiple'
+                }
+            });
+
+            const defaultTeacher = await prisma.user.upsert({
+                where: { email: 'Faculty@nmims.in' },
+                update: {},
+                create: {
+                    id: 'test-teacher-id',
+                    email: 'Faculty@nmims.in',
+                    password: 'hashedpassword',
+                    name: 'Demo Faculty',
+                    role: 'TEACHER'
+                }
+            });
+            console.log('🌱 Verified default Class and Teacher exist.');
+        } catch (seedErr) {
+            console.error('⚠️ Could not auto-seed default data:', seedErr.message);
+        }
+
         app.listen(PORT, () => {
             console.log(`🚀 SmartGrade Backend is running on http://localhost:${PORT}`);
         }).on('error', (err) => {
