@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+server/node_modules
+
+# Build output
+dist
+dist-ssr
+
+# Environment variables (NEVER commit secrets)
+.env
+.env.local
+.env.production
+.env.production.local
+server/.env
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+
+# Gemini / AI
+.gemini/
+
+# Prisma migrations (optional — keep if you want migration history)
+# server/prisma/migrations/
