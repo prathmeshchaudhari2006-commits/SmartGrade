@@ -11,24 +11,14 @@ dotenv.config({ path: join(__dirname, '../.env') });
 const { PrismaClient } = PrismaPkg;
 const { Pool } = pgPkg;
 
-console.log('🔧 DATABASE_URL:', process.env.DATABASE_URL ? 'SET' : 'NOT SET');
-
-// Use DATABASE_URL from environment (works for both local and production)
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    connectionTimeoutMillis: 10000,
-    idleTimeoutMillis: 30000,
-    max: 5,
-    ssl: process.env.DATABASE_URL?.includes('neon.tech') ? { rejectUnauthorized: false } : false,
+const prisma = new PrismaClient({
+    datasources: {
+        db: {
+            url: process.env.DATABASE_URL,
+        },
+    },
 });
 
-pool.on('error', (err) => {
-    console.error('💀 Pool error:', err.message);
-});
-
-const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter });
-
-console.log('🔧 PrismaClient created (adapter mode)');
+console.log('🔧 PrismaClient created (native mode)');
 
 export default prisma;

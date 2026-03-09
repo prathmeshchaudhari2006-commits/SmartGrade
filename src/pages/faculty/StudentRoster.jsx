@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { roster } from '../../data/mockFacultyData';
 import { MdSearch, MdFilterList, MdTrendingUp, MdTrendingDown } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 export default function StudentRoster() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -29,7 +30,9 @@ export default function StudentRoster() {
                         />
                         <MdSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
                     </div>
-                    <button className="btn-secondary px-3 py-2 flex items-center justify-center">
+                    <button
+                        onClick={() => toast.info('Advanced filtering options coming soon!')}
+                        className="btn-secondary px-3 py-2 flex items-center justify-center">
                         <MdFilterList className="w-5 h-5" />
                     </button>
                 </div>
@@ -83,7 +86,9 @@ export default function StudentRoster() {
                                     </td>
 
                                     <td className="py-4 px-6 text-right">
-                                        <button className="text-brand-green font-semibold text-sm hover:underline opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            onClick={() => toast.info(`Viewing detailed profile for ${student.name} coming soon!`)}
+                                            className="text-brand-green font-semibold text-sm hover:underline opacity-0 group-hover:opacity-100 transition-opacity">
                                             View Details
                                         </button>
                                     </td>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { feedbackHistory } from '../../data/mockStudentData';
 import { MdOutlineAssessment, MdSearch } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 export default function MyFeedback() {
     return (
@@ -59,7 +60,9 @@ export default function MyFeedback() {
                                         </div>
                                     </td>
                                     <td className="py-4 px-6 text-right">
-                                        <button className="text-brand-blue font-semibold text-sm hover:underline flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            onClick={() => toast.info('Detailed report dashboard coming soon!')}
+                                            className="text-brand-blue font-semibold text-sm hover:underline flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <MdOutlineAssessment /> View Report
                                         </button>
                                     </td>

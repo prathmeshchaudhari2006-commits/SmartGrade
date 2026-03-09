@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { toast } from 'react-toastify';
 import StatCard from '../../components/StatCard';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer } from 'recharts';
 import { MdTrendingUp, MdSchool, MdAssignment, MdEventAvailable, MdWarning, MdCheckCircle, MdInfo } from 'react-icons/md';
@@ -127,14 +128,14 @@ export default function ParentDashboard() {
                     <h3 className="text-sm font-bold text-slate-700 mb-2">School Attendance</h3>
                     <div className="flex gap-1 flex-wrap mb-6">
                         {attendanceTracker.map((day, i) => (
-                            <div key={`att-${i}`} title={`Day ${day.day}: ${day.status}`} className={`w-[calc(100%/31)] aspect-square rounded-sm border border-black/5 ${day.status === 'present' ? 'bg-green-500' : 'bg-red-400'}`}></div>
+                            <div key={`att-${i}`} onClick={() => toast.info(`Attendance detail for Day ${day.day}`)} title={`Day ${day.day}: ${day.status}`} className={`w-[calc(100%/31)] aspect-square rounded-sm border border-black/5 hover:cursor-pointer hover:opacity-80 transition-opacity ${day.status === 'present' ? 'bg-green-500' : 'bg-red-400'}`}></div>
                         ))}
                     </div>
 
                     <h3 className="text-sm font-bold text-slate-700 mb-2">Homework Submissions</h3>
                     <div className="flex gap-1 flex-wrap">
                         {attendanceTracker.map((day, i) => (
-                            <div key={`sub-${i}`} title={`Day ${day.day}: ${day.submission}`} className={`w-[calc(100%/31)] aspect-square rounded-sm border border-black/5 ${day.submission === 'on_time' ? 'bg-green-500' : day.submission === 'late' ? 'bg-yellow-400' : 'bg-red-400'}`}></div>
+                            <div key={`sub-${i}`} onClick={() => toast.info(`Submission detail for Day ${day.day}`)} title={`Day ${day.day}: ${day.submission}`} className={`w-[calc(100%/31)] aspect-square rounded-sm border border-black/5 hover:cursor-pointer hover:opacity-80 transition-opacity ${day.submission === 'on_time' ? 'bg-green-500' : day.submission === 'late' ? 'bg-yellow-400' : 'bg-red-400'}`}></div>
                         ))}
                     </div>
                 </div>

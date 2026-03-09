@@ -230,14 +230,18 @@ export default function Assignments() {
                             </div>
 
                             <div className="flex flex-col items-end gap-2">
-                                <button className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-colors border
+                                <button
+                                    onClick={() => toast.success('Status updated!')}
+                                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-colors border
                                     ${assignment.submissions?.some(s => s.status === 'NEEDS_MANUAL_REVIEW')
-                                        ? 'bg-orange-600 text-white border-orange-700 hover:bg-orange-700 shadow-sm'
-                                        : 'bg-blue-50 text-brand-blue border-blue-200 hover:bg-brand-blue hover:text-white'}`}>
+                                            ? 'bg-orange-600 text-white border-orange-700 hover:bg-orange-700 shadow-sm'
+                                            : 'bg-blue-50 text-brand-blue border-blue-200 hover:bg-brand-blue hover:text-white'}`}>
                                     <MdCheckCircle className="w-4 h-4" />
                                     {assignment.submissions?.some(s => s.status === 'NEEDS_MANUAL_REVIEW') ? 'Resolve Review' : 'Verify & Approve'}
                                 </button>
-                                <button className="text-slate-400 hover:text-slate-600 p-1">
+                                <button
+                                    onClick={() => toast.info('Additional options coming soon!')}
+                                    className="text-slate-400 hover:text-slate-600 p-1">
                                     <MdMoreVert className="w-5 h-5" />
                                 </button>
                             </div>

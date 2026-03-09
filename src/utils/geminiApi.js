@@ -1,5 +1,5 @@
 export async function gradeAssignment({ subject, question, studentAnswer, studentName, facultyContext = null, base64Image = null, mimeType = null }) {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyBNmnhxNaQS47MSV6n7ope7B1J5_Pgo5A8';
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyAAS-Xgu7C7S9WugVnMAbISVwsNUo4nGuk';
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
     const prompt = `You are SmartGrade AI, an expert educational assessment system for Indian schools. Grade the following student answer and provide detailed personalized feedback.

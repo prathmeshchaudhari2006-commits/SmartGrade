@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { toast } from 'react-toastify';
 import API_BASE_URL from '../../config/api';
 import StatCard from '../../components/StatCard';
 import { MdPeople, MdAssignmentTurnedIn, MdPendingActions, MdScore, MdTimer, MdWarning, MdPublic } from 'react-icons/md';
@@ -7,6 +9,7 @@ import { teacherStats, recentActivity } from '../../data/mockFacultyData';
 
 export default function FacultyDashboard() {
     const { user } = useAuth();
+    const navigate = useNavigate();
     const [assignments, setAssignments] = useState([]);
 
     useEffect(() => {
@@ -114,7 +117,9 @@ export default function FacultyDashboard() {
                                                 </span>
                                             )}
                                             {activity.error && (
-                                                <button className="bg-red-50 text-brand-red border border-red-200 px-3 py-1 rounded text-xs font-bold hover:bg-brand-red hover:text-white transition-colors">
+                                                <button
+                                                    onClick={() => toast.info('Manual grading workflow coming soon!')}
+                                                    className="bg-red-50 text-brand-red border border-red-200 px-3 py-1 rounded text-xs font-bold hover:bg-brand-red hover:text-white transition-colors">
                                                     Grade Manually
                                                 </button>
                                             )}
@@ -131,13 +136,19 @@ export default function FacultyDashboard() {
                     <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
                         <h2 className="text-lg font-bold text-slate-800 mb-4">Quick Actions</h2>
                         <div className="space-y-3">
-                            <button className="w-full text-left px-4 py-3 rounded-lg bg-green-50 text-brand-green font-semibold hover:bg-green-100 transition-colors">
+                            <button
+                                onClick={() => navigate('/faculty/assignments')}
+                                className="w-full text-left px-4 py-3 rounded-lg bg-green-50 text-brand-green font-semibold hover:bg-green-100 transition-colors">
                                 + Create Assignment
                             </button>
-                            <button className="w-full text-left px-4 py-3 rounded-lg bg-blue-50 text-brand-blue font-semibold hover:bg-blue-100 transition-colors">
+                            <button
+                                onClick={() => toast.info('Messaging portal opening soon!')}
+                                className="w-full text-left px-4 py-3 rounded-lg bg-blue-50 text-brand-blue font-semibold hover:bg-blue-100 transition-colors">
                                 ✉️ Message Parents
                             </button>
-                            <button className="w-full text-left px-4 py-3 rounded-lg border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 transition-colors">
+                            <button
+                                onClick={() => toast.success('Weekly report generation started!')}
+                                className="w-full text-left px-4 py-3 rounded-lg border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 transition-colors">
                                 📊 Generate Weekly Report
                             </button>
                         </div>
@@ -149,7 +160,9 @@ export default function FacultyDashboard() {
                         <p className="text-sm text-indigo-700 mb-4">
                             Based on recent tests, <strong>15 students</strong> are struggling with "Refraction of Light". Consider reviewing this topic on Friday.
                         </p>
-                        <button className="text-xs font-bold text-indigo-600 uppercase tracking-widest hover:text-indigo-800">
+                        <button
+                            onClick={() => toast.info('AI Lesson Planner feature coming soon!')}
+                            className="text-xs font-bold text-indigo-600 uppercase tracking-widest hover:text-indigo-800">
                             View Lesson Plan Gen
                         </button>
                     </div>
@@ -162,7 +175,9 @@ export default function FacultyDashboard() {
                         <div>
                             <h3 className="font-bold text-lg leading-tight mb-1">SDG 4 Aligned</h3>
                             <p className="text-sm text-blue-100 mb-3">Your curriculum officially meets the UN Sustainable Development Goal for Quality Education.</p>
-                            <button className="text-xs font-bold uppercase tracking-wider text-white border border-white/30 px-3 py-1 rounded hover:bg-white/10 transition-colors">
+                            <button
+                                onClick={() => window.open('https://sdgs.un.org/goals/goal4', '_blank')}
+                                className="text-xs font-bold uppercase tracking-wider text-white border border-white/30 px-3 py-1 rounded hover:bg-white/10 transition-colors">
                                 View Policy Impact
                             </button>
                         </div>

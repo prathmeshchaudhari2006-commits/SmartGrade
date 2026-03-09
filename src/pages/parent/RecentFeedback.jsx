@@ -1,6 +1,7 @@
 import React from 'react';
 import { recentFeedback } from '../../data/mockParentData';
 import { MdOutlineAssessment } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 export default function RecentFeedback() {
     return (
@@ -50,7 +51,9 @@ export default function RecentFeedback() {
                                     </div>
 
                                     <div className="mt-4 flex justify-end">
-                                        <button className="flex items-center gap-2 text-brand-blue font-bold hover:underline">
+                                        <button
+                                            onClick={() => toast.info('Full feedback details view coming soon!')}
+                                            className="flex items-center gap-2 text-brand-blue font-bold hover:underline">
                                             <MdOutlineAssessment className="w-5 h-5" /> Read Full Details
                                         </button>
                                     </div>

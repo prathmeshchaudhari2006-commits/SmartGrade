@@ -1,6 +1,7 @@
 import React from 'react';
 import { notifications } from '../../data/mockParentData';
 import { MdWarning, MdNotifications, MdCheckCircle, MdInfo } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 export default function Notifications() {
     const getIcon = (type) => {
@@ -56,11 +57,15 @@ export default function Notifications() {
 
                             {!notif.read && (
                                 <div className="mt-3 flex gap-3">
-                                    <button className="text-sm font-bold text-brand-blue hover:text-blue-700 transition-colors">
+                                    <button
+                                        onClick={() => toast.info('Notification details coming soon!')}
+                                        className="text-sm font-bold text-brand-blue hover:text-blue-700 transition-colors">
                                         View full details
                                     </button>
                                     {notif.type === 'critical' && (
-                                        <button className="text-sm font-bold bg-brand-red text-white px-3 py-1 rounded hover:bg-red-700 transition-colors">
+                                        <button
+                                            onClick={() => toast.info('Opening new message draft...')}
+                                            className="text-sm font-bold bg-brand-red text-white px-3 py-1 rounded hover:bg-red-700 transition-colors">
                                             Message Faculty
                                         </button>
                                     )}

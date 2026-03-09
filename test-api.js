@@ -27,8 +27,7 @@ Otherwise, provide your response in this exact JSON format (and DO NOT wrap in m
 async function testApi() {
     try {
         const response = await fetch(url, {
-            method: 'POST',
-            headers: {
+            method: 'POST', headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({

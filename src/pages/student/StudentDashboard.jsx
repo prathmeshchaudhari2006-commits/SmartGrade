@@ -5,6 +5,7 @@ import StatCard from '../../components/StatCard';
 import { MdAssignmentTurnedIn, MdScore, MdPendingActions, MdBadge, MdArrowForward } from 'react-icons/md';
 import { streakData, badges } from '../../data/mockStudentData';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function StudentDashboard() {
     const { user } = useAuth();
@@ -119,8 +120,9 @@ export default function StudentDashboard() {
                             {streakData.map((day, i) => (
                                 <div
                                     key={i}
+                                    onClick={() => toast.info(`Activity breakdown for Day ${day.day} coming soon!`)}
                                     className={`w-full aspect-square rounded-sm
-                  ${day.active ? 'bg-brand-green/80 hover:bg-brand-green cursor-pointer' : 'bg-slate-100'} 
+                  ${day.active ? 'bg-brand-green/80 hover:bg-brand-green cursor-pointer' : 'bg-slate-100 hover:bg-slate-200 cursor-pointer'} 
                   transition-colors`}
                                     title={`Day ${day.day}: ${day.active ? 'Active' : 'Inactive'}`}
                                 ></div>
